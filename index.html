@@ -4,10 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Arquitecturas de Observabilidad Modernas</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Alternativa Robusta: Tailwind vía CDN para asegurar que el diseño cargue sin compilación compleja -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -18,50 +20,53 @@
             },
             colors: {
               slate: {
-                850: '#1e293b', // Custom dark slate
-                950: '#020617', // Deep background
+                850: '#1e293b',
+                950: '#020617',
               }
             }
           }
         }
       }
     </script>
+
     <style>
       html {
         scroll-behavior: smooth;
         scroll-padding-top: 100px;
       }
       body {
-        background-color: #020617;
+        background-color: #020617; /* Fallback color */
         color: #e2e8f0;
       }
-      @media print {
-        nav, footer, button {
-          display: none !important;
-        }
+      /* Ocultar barra de scroll en móviles pero permitir scroll */
+      ::-webkit-scrollbar {
+        width: 8px;
+        background-color: #0f172a;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: #334155;
+        border-radius: 4px;
       }
     </style>
-    <!-- Import Map para desarrollo local sin build step (opcional si usas Vite, pero útil para previews rápidos) -->
-    <script type="importmap">
+  <script type="importmap">
 {
   "imports": {
     "react": "https://aistudiocdn.com/react@^19.2.0",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
     "@react-three/fiber": "https://aistudiocdn.com/@react-three/fiber@^9.4.0",
     "@react-three/drei": "https://aistudiocdn.com/@react-three/drei@^10.7.7",
-    "three": "https://aistudiocdn.com/three@^0.181.1",
-    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.553.0",
+    "three": "https://aistudiocdn.com/three@^0.181.2",
     "vite": "https://aistudiocdn.com/vite@^7.2.4",
     "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
   }
 }
 </script>
 </head>
-  <body>
+  <body class="bg-slate-950 text-slate-200 antialiased selection:bg-blue-500 selection:text-white">
     <div id="root"></div>
-    <!-- Punto de entrada para Vite -->
     <script type="module" src="./index.tsx"></script>
   </body>
 </html>
